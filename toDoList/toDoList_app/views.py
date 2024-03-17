@@ -1,12 +1,17 @@
 from django.shortcuts import render
-from django.views import View
-from django.http import JsonResponse,HttpResponse
+from django.views.generic import TemplateView,ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Todo
 
 # Create your views here.
-class Index(View):
-    def get(self, request, *args, **kwargs):
-        if kwargs.get("input_data") == "http":
-            return HttpResponse("<h1>hello world</h1>")
-        return JsonResponse({
-            "message": "hello world"
-        })
+
+class Index(TemplateView):
+    template_name="index.html"
+
+
+class Dashbord(LoginRequiredMixin,ListView):
+    template_name="dashbord.html"
+    model= Todo
+    
+    
+    

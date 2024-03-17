@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR: Path = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,8 +25,13 @@ SECRET_KEY = "django-insecure-$07zd76e1z76dm10k%=@6(yi%4exezzdn2j#2)jl749ys)j46^
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+AUTH_USER_MODEL = 'user_manager.User'
 
 ALLOWED_HOSTS : list[str] = []
+
+STATICFILES_DIRS: list[Path]=[
+    BASE_DIR / "toDoList_app"/"static",
+]
 
 
 # Application definition
@@ -39,6 +44,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "toDoList_app",
+    "user_manager",
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     
 ]
 
@@ -50,6 +59,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = "toDoList.urls"
@@ -111,6 +121,14 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 
 # Internationalization
@@ -134,3 +152,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+ACCOUNT_AUTHENTICATION_METHOD= "email"
+ACCOUNT_EMAIL_REQUIRED=True
+
+STATIC_ROOT = BASE_DIR / "abc"

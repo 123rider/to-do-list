@@ -1,6 +1,9 @@
 from django.urls import path
+from django.urls.resolvers import URLPattern
 from .views import *
 
-urlpatterns = [
-    path("<input_data>",Index.as_view(),name="index"),
+urlpatterns: list[URLPattern] = [
+    path("",Index.as_view(),name="index"),
+    path("dashboard/",Dashbord.as_view(),name="dashboard"),
+    
 ]
