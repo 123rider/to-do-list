@@ -29,9 +29,7 @@ AUTH_USER_MODEL = 'user_manager.User'
 
 ALLOWED_HOSTS : list[str] = []
 
-STATICFILES_DIRS: list[Path]=[
-    BASE_DIR / "toDoList_app"/"static",
-]
+
 
 
 # Application definition
@@ -48,9 +46,15 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'rest_framework',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    
+    
     
 ]
 
+SITE_ID = 1
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -157,3 +161,12 @@ ACCOUNT_AUTHENTICATION_METHOD= "email"
 ACCOUNT_EMAIL_REQUIRED=True
 
 STATIC_ROOT = BASE_DIR / "abc"
+
+REST_AUTH = {
+    "TOKEN_MODEL" : None,
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'my-app-auth',
+    'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
+}
+
+

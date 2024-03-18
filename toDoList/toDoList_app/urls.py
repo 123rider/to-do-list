@@ -1,9 +1,10 @@
-from django.urls import path
-from django.urls.resolvers import URLPattern
-from .views import *
+from rest_framework.routers import DefaultRouter
+from .views import Todo
+from django.urls import include,path
 
-urlpatterns: list[URLPattern] = [
-    path("",Index.as_view(),name="index"),
-    path("dashboard/",Dashbord.as_view(),name="dashboard"),
-    
+toDoListAppRouters= DefaultRouter()
+toDoListAppRouters.register(r'toDo',Todo,basename="toDoListApp")
+
+urlpatterns = [
+    path("",include(toDoListAppRouters.urls)),
 ]
