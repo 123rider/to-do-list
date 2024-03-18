@@ -14,9 +14,4 @@ class Todo(ModelViewSet):
     def get_queryset(self,):
         self.user = self.request.user
         if self.user.is_authenticated:
-            return models.Todo.objects.filter(owner=self.user)
-        
-    
-    
-    
-        
+            return models.Todo.objects.filter(owner=self.user)        
