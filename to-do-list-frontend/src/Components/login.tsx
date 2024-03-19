@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import axios from "axios"
 
 interface login_data {
-    Email : string|undefined;
-    Password : string|undefined;
+    email : string|undefined;
+    password : string|undefined;
 }
 
 const Login: React.FC = ()=> {
@@ -27,10 +27,11 @@ const Login: React.FC = ()=> {
         <form onSubmit={(e: React.FormEvent) => {
             e.preventDefault()
             const user_data: login_data = {
-                Email: email.current?.value,
-                Password: password.current?.value,
+                email: email.current?.value,
+                password: password.current?.value,
             }
-            if(user_data.Email && user_data.Password) {
+            console.log(user_data)
+            if(user_data.email && user_data.password) {
                 login(user_data)
                 console.log(response)
             }
