@@ -27,7 +27,10 @@ SECRET_KEY = "django-insecure-$07zd76e1z76dm10k%=@6(yi%4exezzdn2j#2)jl749ys)j46^
 DEBUG = True
 AUTH_USER_MODEL = 'user_manager.User'
 
-ALLOWED_HOSTS : list[str] = []
+ALLOWED_HOSTS : list[str] = [
+    "192.168.1.10",
+    "127.0.0.1"
+]
 
 
 
@@ -49,6 +52,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'dj_rest_auth',
     'dj_rest_auth.registration',
+    'corsheaders'
     
     
     
@@ -56,6 +60,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -168,5 +173,7 @@ REST_AUTH = {
     'JWT_AUTH_COOKIE': 'my-app-auth',
     'JWT_AUTH_REFRESH_COOKIE': 'my-refresh-token',
 }
-
-
+#CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:5173',
+]

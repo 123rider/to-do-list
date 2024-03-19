@@ -7,4 +7,5 @@ djangorestframework
 markdown
 django-filter
 dj_rest_auth
-djangorestframework-jwt
+djangorestframework-simplejwt
+django-cors-headers
