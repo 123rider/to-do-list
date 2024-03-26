@@ -185,4 +185,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
+frontend/bun.lockb
