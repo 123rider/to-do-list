@@ -28,8 +28,15 @@ const SignupForm: React.FC = () => {
             <Formik<SignupFormValues>
                 initialValues={{ email: '', password: '', confirmPassword: '' }}
                 validationSchema={validationSchema}
-                onSubmit={(values, { setSubmitting }) => {
-                    register(values)
+                onSubmit={(values, { setSubmitting, setStatus }) => {
+                    register(values).catch((err) => {
+                        const data = err.reresponse.email
+                        if(data){
+                            console.log(data)
+                            setStatus()
+                        }
+                    })
+                    setSubmitting(false);
                 }}
             >
                 {({ isSubmitting, errors, touched }) => (
