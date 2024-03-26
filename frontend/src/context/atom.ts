@@ -1,6 +1,6 @@
 import {atom} from "jotai"
 import { login } from "./api"
-import type { userProife } from "../dataType"
+import type { userProife } from "./dataType"
 
 
 const loginAtomFC = atom(login)
