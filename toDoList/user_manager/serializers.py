@@ -63,5 +63,5 @@ class UserDetailsSerializer(serializers.ModelSerializer):
         # classes from `serializers.py`. So, we need to check whether the auth model has
         # the attribute or not
         model = UserModel
-        fields = ('pk','email','first_name','last_name','profile_picture','date_joined')
-        read_only_fields = ('email','pk','date_joined')
+        fields = ('email','first_name','last_name','profile_picture','date_joined')
+        read_only_fields = ('email','date_joined')
